@@ -10,8 +10,8 @@ int main()
     cin >> n;
     int *arr = new int[n];
     GenerateRandomData(arr, n);
-    int count_comparison = shakerSort_count_cmp(arr, n);
-    auto time_run = count_runtime(shakerSort, arr, n);
+    long count_comparison=0; radixSort_count_cmp(arr, n,count_comparison);
+    auto time_run = count_runtime(radixSort, arr, n);
     cout << count_comparison << endl;
     cout << time_run << endl;
     delete[] arr;
