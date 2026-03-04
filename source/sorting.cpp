@@ -104,6 +104,11 @@ void quickSort(int arr[], int first, int last)
     }
 }
 
+void quickSort(int arr[], int n)
+{
+
+}
+
 // ------------------------------------------------
 
 void insertionSort(int arr[], int n) {
