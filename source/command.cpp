@@ -91,7 +91,7 @@ long long perform_count_comp(char* sort_name, int arr[], int n)
 	return count_comp;
 }
 
-void output_command(char* param, char* sort_name, sortFunction sort_func, int n, int arr[])
+void output_param(char* param, char* sort_name, sortFunction sort_func, int n, int arr[])
 {
 	if (string(param) == "-time")
 	{
@@ -105,9 +105,13 @@ void output_command(char* param, char* sort_name, sortFunction sort_func, int n,
 	}
 	else if (string(param) == "-both")
 	{
+		int* arr_1 = new int[n];
+		for (int i = 0; i < n; i++)
+			arr_1[i] = arr[i];
 		cout << "Running time: " << count_runtime(sort_func, arr, n) << endl;
-		long long cmp = perform_count_comp(sort_name, arr, n);
+		long long cmp = perform_count_comp(sort_name, arr_1, n);
 		cout << "Comparisons: " << cmp << endl;
+		delete[]arr_1;
 	}
 }
 
@@ -133,7 +137,13 @@ void do_command_1(int n, char* requirements[])
 	for (int i = 0; i < 5; i++)
 		cout << "-----";
 	cout << endl;
-	output_command(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr);
+	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr);
+	ofstream fout("output.txt", ios::out);
+	for (int i = 0; i < m; i++)
+		fout << arr[i] << " ";
+	fout << endl;
+	fout.close();
+	delete[]arr;
 }
 
 void do_command_2(int n, char* requirements[])
