@@ -183,6 +183,7 @@ void do_command_2(int n, char* requirements[])
 		cout << "Error: Cannot open input.txt" << endl;
 		return;
 	}
+
 	fout_input << m << endl;
 	for (int i = 0; i < m; i++)
 	{
@@ -205,7 +206,75 @@ void do_command_2(int n, char* requirements[])
 
 void do_command_3(int n, char* requirements[])
 {
+	cout << "ALGORITHM MODE" << endl;
+	print_sorting_algorithm(requirements[2]);
+	cout << "Input size: " << requirements[3] << endl;
+	cout << endl;
+	int m = stoi(requirements[3]);
+	int* arr_1 = new int[m];
+	int* arr_2 = new int[m];
+	int* arr_3 = new int[m];
+	int* arr_4 = new int[m];
 
+	char input_order_1[] = "-rand";
+	char input_order_2[] = "-nsorted";
+	char input_order_3[] = "-sorted";
+	char input_order_4[] = "-rev";
+
+	call_generated_func(input_order_1, m, arr_1);
+	ofstream fout("input_1.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr_1[i] << " ";
+	fout.close();
+
+	call_generated_func(input_order_2, m, arr_2);
+	fout.open("output_2.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr_2[i] << " ";
+	fout.close();
+	
+	call_generated_func(input_order_3, m, arr_3);
+	fout.open("output_3.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr_3[i] << " ";
+	fout.close();
+	
+	call_generated_func(input_order_4, m, arr_4);
+	fout.open("output_4.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr_4[i] << " ";
+	fout.close();
+
+	cout << "Input order: Randomize" << endl;
+	for (int i = 0; i < 5; i++)
+		cout << "-----";
+	cout << endl;
+	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr_1);
+
+	cout << endl;
+	cout << "Input order: Nearly Sorted" << endl;
+	for (int i = 0; i < 5; i++)
+		cout << "-----";
+	cout << endl;
+	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr_2);
+	
+	cout << endl;
+	cout << "Input order: Sorted" << endl;
+	for (int i = 0; i < 5; i++)
+		cout << "-----";
+	cout << endl;
+	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr_3);
+	
+	cout << endl;
+	cout << "Input order: Reversed" << endl;
+	for (int i = 0; i < 5; i++)
+		cout << "-----";
+	cout << endl;
+	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr_4);
 }
 
 void do_command_4(int n, char* requirements[])
