@@ -15,3 +15,6 @@ void heapify_count_cmp(int arr[], int end, int curNode, long long &count_compari
 void heapSort_count_cmp(int arr[], int n, long long &count_comparison);
 
 void radixSort_count_cmp(int arr[], int n, long long &count_comparison);
+void countingsort_count(int a[], int n, int& count_comparison);
+void binaryinsertionsort_count(int a[], int n, int& count_comparison);
+void flashsort_count(int a[], int n, int& count_comparison);
