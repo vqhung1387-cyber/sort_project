@@ -15,3 +15,7 @@ void heapify(int arr[], int end, int curNode);
 void heapSort(int arr[], int n);
 
 void radixSort(int arr[], int n);
+
+void countingsort(int a[], int n);
+void binaryinsertionsort(int a[], int n);
+void flashSort(int a[], int n);
