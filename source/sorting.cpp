@@ -168,3 +168,97 @@ void radixSort(int arr[], int n) {
         }
     }
 }
+//---------------------------------------------
+void countingsort(int a[], int n) {
+    int max_val = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (a[i] > max_val) {
+            max_val = a[i];
+        }
+    }
+    int f[max_val];
+    for (int i = 0; i < n; i++) {
+        f[a[i]]++;
+    }
+    for (int i = 1; i < max_val; i++) {
+        f[i] = f[i - 1] + f[i];
+    }
+    int b[n + 1];
+    for (int i = n - 1; i >= 0; i--) {
+        b[f[a[i]] - 1] = a[i];
+        f[a[i]]--;
+    }
+    for (int i = 0; i < n; i++) {
+        a[i] = b[i];
+    }
+
+}
+void binaryinsertionsort(int a[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = a[i];
+        int fi = 0, las = i - 1;
+        while (fi <= las) {
+            int mid = (las + fi) / 2;
+            if (key < a[mid]) las = mid - 1;
+            else fi = mid + 1;
+        }
+        for (int j = i - 1; j >= fi; j--) {
+            a[j + 1] = a[j];
+        }
+        a[fi] = key;
+    }
+}
+void flashSort(int a[], int n) {
+    if (n <= 1) return;
+
+    int minVal = a[0], maxIdx = 0;
+    for (int i = 1; i < n; i++) {
+        if (a[i] < minVal) minVal = a[i];
+        if (a[i] > a[maxIdx]) maxIdx = i;
+    }
+
+    if (a[maxIdx] == minVal) return;
+
+    int m = n / 2;
+    if (m < 2) m = 2;
+
+    int* L = new int[m];
+    for (int i = 0; i < m; i++) L[i] = 0;
+
+    for (int i = 0; i < n; i++) {
+        int k = (long long)(m - 1) * (a[i] - minVal) / (a[maxIdx] - minVal);
+        L[k]++;
+    }
+
+    for (int i = 1; i < m; i++)
+        L[i] += L[i - 1];
+
+    swap(a[maxIdx], a[0]);
+
+    int move = 0, j = 0, k = m - 1;
+    while (move < n - 1) {
+        while (j >= L[k]) {
+            j++;
+            k = (long long)(m - 1) * (a[j] - minVal) / (a[maxIdx] - minVal);
+        }
+        int flash = a[j];
+        while (j != L[k]) {
+            k = (long long)(m - 1) * (flash - minVal) / (a[maxIdx] - minVal);
+            int pos = --L[k];
+            swap(flash, a[pos]);
+            move++;
+        }
+    }
+
+    delete[] L;
+
+    for (int i = 1; i < n; i++) {
+        int key = a[i];
+        int j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
+    }
+}
