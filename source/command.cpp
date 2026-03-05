@@ -35,29 +35,29 @@ sortFunction select_sort_func(char* sort_name) {
 
 void print_sorting_algorithm(char* sort_name) {
 	if (string(sort_name) == "selection-sort")
-		cout << "ALgorithm: Selection Sort" << endl;
+		cout << "Algorithm: Selection Sort" << endl;
 	else if (string(sort_name) == "shaker-sort")
-		cout << "ALgorithm: Shaker Sort" << endl;
+		cout << "Algorithm: Shaker Sort" << endl;
 	else if (string(sort_name) == "quick-sort")
-		cout << "ALgorithm: Quick Sort" << endl;
+		cout << "Algorithm: Quick Sort" << endl;
 	else if (string(sort_name) == "insertion-sort")
-		cout << "ALgorithm: Insertion Sort" << endl;
+		cout << "Algorithm: Insertion Sort" << endl;
 	else if (string(sort_name) == "heap-sort")
-		cout << "ALgorithm: Heap Sort" << endl;
+		cout << "Algorithm: Heap Sort" << endl;
 	else if (string(sort_name) == "radix-sort")
-		cout << "ALgorithm: Radix Sort" << endl;
+		cout << "Algorithm: Radix Sort" << endl;
 	else if (string(sort_name) == "bubble-sort")
-		cout << "ALgorithm: Bubble Sort" << endl;
+		cout << "Algorithm: Bubble Sort" << endl;
 	else if (string(sort_name) == "shell-sort")
-		cout << "ALgorithm: Shell Sort" << endl;
+		cout << "Algorithm: Shell Sort" << endl;
 	else if (string(sort_name) == "merge-sort")
-		cout << "ALgorithm: Merge Sort" << endl;
+		cout << "Algorithm: Merge Sort" << endl;
 	else if (string(sort_name) == "counting-sort")
-		cout << "ALgorithm: Counting Sort" << endl;
+		cout << "Algorithm: Counting Sort" << endl;
 	else if (string(sort_name) == "binary-insertion-sort")
-		cout << "ALgorithm: Binary Insertion Sort" << endl;
+		cout << "Algorithm: Binary Insertion Sort" << endl;
 	else if (string(sort_name) == "flash-sort")
-		cout << "ALgorithm: Flash Sort" << endl;
+		cout << "Algorithm: Flash Sort" << endl;
 }
 
 long long perform_count_comp(char* sort_name, int arr[], int n)
@@ -275,13 +275,137 @@ void do_command_3(int n, char* requirements[])
 	delete[]arr;
 }
 
+//---------------------- COMPARE MODE ----------------------------
+
+void print_TWOsorting_algorithm(char* sort_name1,char* sort_name2) {
+	if (string(sort_name1) == "selection-sort")
+		cout << "Algorithm: Selection Sort";
+	else if (string(sort_name1) == "shaker-sort")
+		cout << "Algorithm: Shaker Sort";
+	else if (string(sort_name1) == "quick-sort")
+		cout << "Algorithm: Quick Sort";
+	else if (string(sort_name1) == "insertion-sort")
+		cout << "Algorithm: Insertion Sort";
+	else if (string(sort_name1) == "heap-sort")
+		cout << "Algorithm: Heap Sort";
+	else if (string(sort_name1) == "radix-sort")
+		cout << "Algorithm: Radix Sort";
+	else if (string(sort_name1) == "bubble-sort")
+		cout << "Algorithm: Bubble Sort";
+	else if (string(sort_name1) == "shell-sort")
+		cout << "Algorithm: Shell Sort";
+	else if (string(sort_name1) == "merge-sort")
+		cout << "Algorithm: Merge Sort";
+	else if (string(sort_name1) == "counting-sort")
+		cout << "Algorithm: Counting Sort";
+	else if (string(sort_name1) == "binary-insertion-sort")
+		cout << "Algorithm: Binary Insertion Sort";
+	else if (string(sort_name1) == "flash-sort")
+		cout << "Algorithm: Flash Sort";
+	cout<<" | "; 
+
+	if (string(sort_name2) == "selection-sort")
+		cout << "Selection Sort";
+	else if (string(sort_name2) == "shaker-sort")
+		cout << "Shaker Sort";
+	else if (string(sort_name2) == "quick-sort")
+		cout << "Quick Sort";
+	else if (string(sort_name2) == "insertion-sort")
+		cout << "Insertion Sort";
+	else if (string(sort_name2) == "heap-sort")
+		cout << "Heap Sort";
+	else if (string(sort_name2) == "radix-sort")
+		cout << "Radix Sort";
+	else if (string(sort_name2) == "bubble-sort")
+		cout << "Bubble Sort";
+	else if (string(sort_name2) == "shell-sort")
+		cout << "Shell Sort";
+	else if (string(sort_name2) == "merge-sort")
+		cout << "Merge Sort";
+	else if (string(sort_name2) == "counting-sort")
+		cout << "Counting Sort";
+	else if (string(sort_name2) == "binary-insertion-sort")
+		cout << "Binary Insertion Sort";
+	else if (string(sort_name2) == "flash-sort")
+		cout << "Flash Sort";
+
+	cout<< endl;
+}
+
+void output_TWOsort(char* sort_name1, char* sort_name2, sortFunction sort_func1, sortFunction sort_func2, int n, int arr[])
+{
+	int* temparr = new int[n];
+	int* arr_1 = new int[n]; int*arr_2 = new int[n];
+	for (int i = 0; i < n; i++){
+		arr_1[i] = arr[i];
+		arr_2[i] = arr[i];
+		temparr[i] = arr[i];
+	}
+	cout << "Running time: " << count_runtime(sort_func1, arr, n) << " | "<< count_runtime(sort_func2, temparr, n) << endl;
+	long long cmp1 = perform_count_comp(sort_name1, arr_1, n),cmp2 = perform_count_comp(sort_name2, arr_2, n);
+	cout << "Comparisons: " << cmp1 << " | "<< cmp2 << endl;
+	delete[]arr_1; delete[]arr_2; delete[]temparr;
+
+}
+
+
 void do_command_4(int n, char* requirements[])
 {
-
+	ifstream fin(requirements[4], ios::out);
+	if (!fin.is_open()) {
+		cout << "Error: Cannot open file " << requirements[3] << endl;
+		return;
+	}
+	int m;
+	fin >> m;
+	int* arr = new int[m];
+	for (int i = 0; i < m; i++)
+	{
+		fin >> arr[i];
+	}
+	fin.close();
+	cout << "COMPARE MODE" << endl;
+	print_TWOsorting_algorithm(requirements[2],requirements[3]);
+	cout << "Input file: " << requirements[4] << endl;
+	cout << "Input size: " << m << endl;
+	for (int i = 0; i < 5; i++)
+		cout << "-----";
+	cout << endl;
+	output_TWOsort(requirements[2], requirements[3],select_sort_func(requirements[2]),select_sort_func(requirements[3]),m,arr);
+	delete[]arr;
 }
 
 void do_command_5(int n, char* requirements[])
 {
+	cout << "COMPARE MODE" << endl;
+	print_TWOsorting_algorithm(requirements[2],requirements[3]);
+	cout << "Input size: " << requirements[4] << endl;
+	cout << "Input order: " << requirements[5] << endl;
 
+	for (int i = 0; i < 5; i++)
+		cout << "-----";
+	cout << endl;
+
+	int m = stoi(requirements[4]);
+	int* arr = new int[m];
+	call_generated_func(requirements[5], m, arr);
+
+	ofstream fout_input("input.txt", ios::out);
+	if (!fout_input.is_open())
+	{
+		cout << "Error: Cannot open input.txt" << endl;
+		return;
+	}
+
+	fout_input << m << endl;
+	for (int i = 0; i < m; i++)
+	{
+		fout_input << arr[i] << " ";
+	}
+	fout_input.close();
+
+	output_TWOsort(requirements[2], requirements[3], select_sort_func(requirements[2]), select_sort_func(requirements[3]), m, arr);
+
+	delete[]arr;
 }
 
