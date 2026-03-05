@@ -211,3 +211,119 @@ void radixSort_count_cmp(int arr[], int n, long long &count_comparison)
         }
     }
 }
+//---------------------------------
+void countingsort_count(int a[], int n, int& count_comparison) {
+    int max_val = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        ++count_comparison;
+        if (++count_comparison && a[i] > max_val) {
+            max_val = a[i];
+        }
+    }
+    int f[max_val];
+    for (int i = 0; i < n; i++) {
+        ++count_comparison;
+        f[a[i]]++;
+    }
+    for (int i = 1; i < max_val; i++) {
+        ++count_comparison;
+        f[i] = f[i - 1] + f[i];
+    }
+    int b[n + 1];
+    for (int i = n - 1; i >= 0; i--) {
+        ++count_comparison;
+        b[f[a[i]] - 1] = a[i];
+        f[a[i]]--;
+    }
+    for (int i = 0; i < n; i++) {
+        ++count_comparison;
+        a[i] = b[i];
+    }
+
+}
+void binaryinsertionsort_count(int a[], int n, int& count_comparison) {
+    for (int i = 1; i < n; i++) {
+        ++count_comparison;
+        int key = a[i];
+        int fi = 0, las = i - 1;
+        while (++count_comparison && fi <= las) {
+            int mid = (las + fi) / 2;
+            if (++count_comparison && key < a[mid]) las = mid - 1;
+            else fi = mid + 1;
+        }
+        for (int j = i - 1; j >= fi; j--) {
+            ++count_comparison;
+            a[j + 1] = a[j];
+        }
+        a[fi] = key;
+    }
+}
+void flashsort_count(int a[], int n, int& count_comparison) {
+    if (++count_comparison && n <= 1) return;
+
+    int minVal = a[0], maxIdx = 0;
+
+    for (int i = 1; i < n; i++) {
+        ++count_comparison;
+        if (++count_comparison && a[i] < minVal) minVal = a[i];
+        if (++count_comparison && a[i] > a[maxIdx]) maxIdx = i;
+    }
+
+    if (++count_comparison && a[maxIdx] == minVal) return;
+
+    int m = n / 2;
+    if (++count_comparison && m < 2) m = 2;
+
+    int* L = new int[m];
+
+    for (int i = 0; i < m; i++) {
+        ++count_comparison;
+        L[i] = 0;
+    }
+
+    for (int i = 0; i < n; i++) {
+        ++count_comparison;
+        int k = (long long)(m - 1) * (a[i] - minVal) / (a[maxIdx] - minVal);
+        L[k]++;
+    }
+
+    for (int i = 1; i < m; i++) {
+        ++count_comparison;
+        L[i] += L[i - 1];
+    }
+
+    swap(a[maxIdx], a[0]);
+
+    int move = 0, j = 0, k = m - 1;
+
+    while (++count_comparison && move < n - 1) {
+        while (++count_comparison && j >= L[k]) {
+            j++;
+            k = (long long)(m - 1) * (a[j] - minVal) / (a[maxIdx] - minVal);
+        }
+
+        int flash = a[j];
+
+        while (++count_comparison && j != L[k]) {
+            k = (long long)(m - 1) * (flash - minVal) / (a[maxIdx] - minVal);
+            int pos = --L[k];
+            swap(flash, a[pos]);
+            move++;
+        }
+    }
+
+    delete[] L;
+
+    for (int i = 1; i < n; i++) {
+        ++count_comparison;
+        int key = a[i];
+        int j = i - 1;
+
+        while (++count_comparison && j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+
+        a[j + 1] = key;
+    }
+}
