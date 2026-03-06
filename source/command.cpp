@@ -60,10 +60,10 @@ void print_sorting_algorithm(char* sort_name) {
 		cout << "Algorithm: Flash Sort" << endl;
 }
 
-long long perform_count_comp(char* sort_name, int arr[], int n)
+unsigned long long perform_count_comp(char* sort_name, int arr[], int n)
 {
 	
-	long long count_comp = 0;
+	unsigned long long count_comp = 0;
 	if (string(sort_name) == "selection-sort")
 		count_comp = selectionSort_count_cmp(arr, n);
 	else if (string(sort_name) == "shaker-sort")
@@ -242,34 +242,19 @@ void do_command_3(int n, char* requirements[])
 	for (int i = 0; i < m; i++)
 		fout << arr[i] << " ";
 	fout.close();
-
-	call_generated_func(input_order_2, m, arr);
-	fout.open("output_2.txt", ios::out);
-	fout << m << endl;
-	for (int i = 0; i < m; i++)
-		fout << arr[i] << " ";
-	fout.close();
-	
-	call_generated_func(input_order_3, m, arr);
-	fout.open("output_3.txt", ios::out);
-	fout << m << endl;
-	for (int i = 0; i < m; i++)
-		fout << arr[i] << " ";
-	fout.close();
-	  
-	call_generated_func(input_order_4, m, arr);
-	fout.open("output_4.txt", ios::out);
-	fout << m << endl;
-	for (int i = 0; i < m; i++)
-		fout << arr[i] << " ";
-	fout.close();
-
 	cout << "Input order: Randomize" << endl;
 	for (int i = 0; i < 5; i++)
 		cout << "-----";
 	cout << endl;
 	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr);
 
+
+	call_generated_func(input_order_2, m, arr);
+	fout.open("input_2.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr[i] << " ";
+	fout.close();
 	cout << endl;
 	cout << "Input order: Nearly Sorted" << endl;
 	for (int i = 0; i < 5; i++)
@@ -277,13 +262,25 @@ void do_command_3(int n, char* requirements[])
 	cout << endl;
 	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr);
 	
+	call_generated_func(input_order_3, m, arr);
+	fout.open("input_3.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr[i] << " ";
+	fout.close();
 	cout << endl;
 	cout << "Input order: Sorted" << endl;
 	for (int i = 0; i < 5; i++)
 		cout << "-----";
 	cout << endl;
 	output_param(requirements[4], requirements[2], select_sort_func(requirements[2]), m, arr);
-	
+
+	call_generated_func(input_order_4, m, arr);
+	fout.open("input_4.txt", ios::out);
+	fout << m << endl;
+	for (int i = 0; i < m; i++)
+		fout << arr[i] << " ";
+	fout.close();
 	cout << endl;
 	cout << "Input order: Reversed" << endl;
 	for (int i = 0; i < 5; i++)

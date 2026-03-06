@@ -218,16 +218,17 @@ void flashSort(int a[], int n) {
         if (a[i] > a[maxIdx]) maxIdx = i;
     }
 
-    if (a[maxIdx] == minVal) return;
+    int maxVal = a[maxIdx];
+    if (maxVal == minVal) return;
 
     int m = n / 2;
     if (m < 2) m = 2;
 
-    int* L = new int[m]();
+    int* L = new int[m];
     for (int i = 0; i < m; i++) L[i] = 0;
 
     for (int i = 0; i < n; i++) {
-        int k = (long long)(m - 1) * (a[i] - minVal) / (a[maxIdx] - minVal);
+        int k = (long long)(m - 1) * (a[i] - minVal) / (maxVal - minVal);
         L[k]++;
     }
 
@@ -237,14 +238,19 @@ void flashSort(int a[], int n) {
     swap(a[maxIdx], a[0]);
 
     int move = 0, j = 0, k = m - 1;
+
     while (move < n - 1) {
-        while (j < n && j >= L[k]) {
+        while (j >= L[k]) {
             j++;
-            k = (long long)(m - 1) * (a[j] - minVal) / (a[maxIdx] - minVal);
+            if (j >= n) break;
+            k = (long long)(m - 1) * (a[j] - minVal) / (maxVal - minVal);
         }
+
+        if (j >= n) break;
+
         int flash = a[j];
         while (j != L[k]) {
-            k = (long long)(m - 1) * (flash - minVal) / (a[maxIdx] - minVal);
+            k = (long long)(m - 1) * (flash - minVal) / (maxVal - minVal);
             int pos = --L[k];
             swap(flash, a[pos]);
             move++;
@@ -264,30 +270,21 @@ void flashSort(int a[], int n) {
     }
 }
 
-void bubbleSort(int* a, int n)
-{
-    for (int i = 1; i < n; ++i)
-    {
-        for (int j = 0; j < n - i; ++j)
-            if (a[j] > a[j + 1]) swap(a[j], a[j + 1]);
-    }
-}
-
-void shellSort(int* a, int n)
+void shellSort(int* arr, int n)
 {
     int interval = n / 2;
     while (interval > 0)
     {
         for (int i = interval; i < n; ++i)
         {
-            int temp = a[i];
+            int temp = arr[i];
             int j = i;
-            while (j >= interval && a[j - interval] > temp)
+            while (j >= interval && arr[j - interval] > temp)
             {
-                a[j] = a[j - interval];
+                arr[j] = arr[j - interval];
                 j -= interval;
             }
-            a[j] = temp;
+            arr[j] = temp;
         }
         interval /= 2;
     }
@@ -350,4 +347,16 @@ void merge(int arr[], int l, int m, int r)
     }
     delete[] LEFT;
     delete[] RIGHT;
+}
+
+void bubbleSort(int* arr, int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 0; j < n - i; j++)
+        {
+            if (arr[j] > arr[j + 1])
+                swap(arr[j], arr[j + 1]);
+        }
+    }
 }

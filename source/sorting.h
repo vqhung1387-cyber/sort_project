@@ -22,9 +22,9 @@ void binaryInsertionSort(int a[], int n);
 
 void flashSort(int a[], int n);
 
-void bubbleSort(int*, int);
+void bubbleSort(int*arr, int n);
 
-void shellSort(int*, int);
+void shellSort(int*arr, int n);
 
 void mergeSort(int* arr, int n);
 void mergeSort(int arr[], int l, int r);

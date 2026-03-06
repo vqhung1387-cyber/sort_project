@@ -2,9 +2,9 @@
 
 using namespace std;
 
-long long selectionSort_count_cmp(int arr[], int n)
+unsigned long long selectionSort_count_cmp(int arr[], int n)
 {
-    long long count_comparison = 0;
+    unsigned long long count_comparison = 0;
     for (int i = 0;  ++count_comparison && i < n - 1; i++)
     {
         int minIdx = i;
@@ -18,9 +18,9 @@ long long selectionSort_count_cmp(int arr[], int n)
     return count_comparison;
 }
 
-long long shakerSort_count_cmp(int arr[], int n)
+unsigned long long shakerSort_count_cmp(int arr[], int n)
 {
-    long long count_comparison = 0;
+    unsigned long long count_comparison = 0;
     int left = 0;
     int right = n - 1;
     int k = 0;
@@ -48,7 +48,7 @@ long long shakerSort_count_cmp(int arr[], int n)
     return count_comparison;
 }
 
-int sortFirstMiddleLast_count_cmp(int arr[], int first, int last, long long &count_comparison)
+int sortFirstMiddleLast_count_cmp(int arr[], int first, int last, unsigned long long &count_comparison)
 {
     int mid = (first + last) / 2;
     if (++count_comparison && arr[first] > arr[mid])
@@ -60,7 +60,7 @@ int sortFirstMiddleLast_count_cmp(int arr[], int first, int last, long long &cou
     return mid;
 }
 
-int partition_count_cmp(int arr[], int first, int last, long long &count_comparison)
+int partition_count_cmp(int arr[], int first, int last, unsigned long long &count_comparison)
 {
     int pivotIndex = sortFirstMiddleLast_count_cmp(arr, first, last, count_comparison);
     swap(arr[pivotIndex], arr[last - 1]);
@@ -90,7 +90,7 @@ int partition_count_cmp(int arr[], int first, int last, long long &count_compari
     return indexFromLeft;
 }
 
-void quickSort_count_cmp(int arr[], int first, int last, long long &count_comparison)
+void quickSort_count_cmp(int arr[], int first, int last, unsigned long long &count_comparison)
 {
     if (last - first == 1)
     {
@@ -110,7 +110,7 @@ void quickSort_count_cmp(int arr[], int first, int last, long long &count_compar
 
 // ------------------------
 
-void insertionSort_count_cmp(int arr[], int n, long long &count_comparison)
+void insertionSort_count_cmp(int arr[], int n, unsigned long long &count_comparison)
 {
     for (int i = 1; i < n; i++, ++count_comparison)
     {
@@ -129,7 +129,7 @@ void insertionSort_count_cmp(int arr[], int n, long long &count_comparison)
     }
 }
 
-void heapify_count_cmp(int arr[], int end, int curNode, long long &count_comparison)
+void heapify_count_cmp(int arr[], int end, int curNode, unsigned long long &count_comparison)
 {
     int leftNode = curNode * 2 + 1, rightNode = curNode * 2 + 2;
     int bigNode = curNode;
@@ -162,7 +162,7 @@ void heapify_count_cmp(int arr[], int end, int curNode, long long &count_compari
     count_comparison++;
 }
 
-void heapSort_count_cmp(int arr[], int n, long long &count_comparison)
+void heapSort_count_cmp(int arr[], int n, unsigned long long &count_comparison)
 {
     for (int i = (n - 1) / 2; i >= 0; i--, ++count_comparison)
         heapify_count_cmp(arr, n, i, count_comparison);
@@ -173,7 +173,7 @@ void heapSort_count_cmp(int arr[], int n, long long &count_comparison)
     }
 }
 
-void radixSort_count_cmp(int arr[], int n, long long &count_comparison)
+void radixSort_count_cmp(int arr[], int n, unsigned long long &count_comparison)
 {
     int maxNum = arr[0];
     for (int i = 1; i < n; i++, ++count_comparison)
@@ -208,7 +208,7 @@ void radixSort_count_cmp(int arr[], int n, long long &count_comparison)
     }
 }
 //---------------------------------
-void countingSort_count_cmp(int a[], int n, long long& count_comparison) {
+void countingSort_count_cmp(int a[], int n, unsigned long long& count_comparison) {
     int max_val = INT_MIN;
     for (int i = 0; i < n; i++) {
         ++count_comparison;
@@ -238,7 +238,7 @@ void countingSort_count_cmp(int a[], int n, long long& count_comparison) {
     delete[]f;
     delete[]b;
 }
-void binaryInsertionSort_count_cmp(int a[], int n, long long& count_comparison) {
+void binaryInsertionSort_count_cmp(int a[], int n, unsigned long long& count_comparison) {
     for (int i = 1; i < n; i++) {
         ++count_comparison;
         int key = a[i];
@@ -255,7 +255,7 @@ void binaryInsertionSort_count_cmp(int a[], int n, long long& count_comparison) 
         a[fi] = key;
     }
 }
-void flashSort_count_cmp(int a[], int n, long long& count_comparison) {
+void flashSort_count_cmp(int a[], int n, unsigned long long& count_comparison) {
     if (++count_comparison && n <= 1) return;
 
     int minVal = a[0], maxIdx = 0;
@@ -266,7 +266,8 @@ void flashSort_count_cmp(int a[], int n, long long& count_comparison) {
         if (++count_comparison && a[i] > a[maxIdx]) maxIdx = i;
     }
 
-    if (++count_comparison && a[maxIdx] == minVal) return;
+    int maxVal = a[maxIdx];
+    if (++count_comparison && maxVal == minVal) return;
 
     int m = n / 2;
     if (++count_comparison && m < 2) m = 2;
@@ -280,7 +281,7 @@ void flashSort_count_cmp(int a[], int n, long long& count_comparison) {
 
     for (int i = 0; i < n; i++) {
         ++count_comparison;
-        int k = (long long)(m - 1) * (a[i] - minVal) / (a[maxIdx] - minVal);
+        int k = (long long)(m - 1) * (a[i] - minVal) / (maxVal - minVal);
         L[k]++;
     }
 
@@ -294,15 +295,19 @@ void flashSort_count_cmp(int a[], int n, long long& count_comparison) {
     int move = 0, j = 0, k = m - 1;
 
     while (++count_comparison && move < n - 1) {
+
         while (++count_comparison && j >= L[k]) {
             j++;
-            k = (long long)(m - 1) * (a[j] - minVal) / (a[maxIdx] - minVal);
+            if (++count_comparison && j >= n) break;
+            k = (long long)(m - 1) * (a[j] - minVal) / (maxVal - minVal);
         }
+
+        if (++count_comparison && j >= n) break;
 
         int flash = a[j];
 
         while (++count_comparison && j != L[k]) {
-            k = (long long)(m - 1) * (flash - minVal) / (a[maxIdx] - minVal);
+            k = (long long)(m - 1) * (flash - minVal) / (maxVal - minVal);
             int pos = --L[k];
             swap(flash, a[pos]);
             move++;
@@ -316,7 +321,7 @@ void flashSort_count_cmp(int a[], int n, long long& count_comparison) {
         int key = a[i];
         int j = i - 1;
 
-        while (++count_comparison && j >= 0 && a[j] > key) {
+        while (++count_comparison && j >= 0 && (++count_comparison && a[j] > key)) {
             a[j + 1] = a[j];
             j--;
         }
@@ -325,7 +330,7 @@ void flashSort_count_cmp(int a[], int n, long long& count_comparison) {
     }
 }
 
-void bubbleSort_count_cmp(int* a, int n, long long& count_comparison)
+void bubbleSort_count_cmp(int* a, int n, unsigned long long& count_comparison)
 {
     for (int i = 1; ++count_comparison && i < n; ++i)
     {
@@ -334,7 +339,7 @@ void bubbleSort_count_cmp(int* a, int n, long long& count_comparison)
     }
 }
 
-void shellSort_count_cmp(int* a, int n, long long& count_comparison)
+void shellSort_count_cmp(int* a, int n, unsigned long long& count_comparison)
 {
     int interval = n / 2;
     while (interval > 0)
@@ -354,7 +359,7 @@ void shellSort_count_cmp(int* a, int n, long long& count_comparison)
     }
 }
 
-void mergeSort_count_cmp(int arr[], int l, int r, long long &count_comparison)
+void mergeSort_count_cmp(int arr[], int l, int r, unsigned long long &count_comparison)
 {
     if (++count_comparison && l < r)
     {
@@ -365,7 +370,7 @@ void mergeSort_count_cmp(int arr[], int l, int r, long long &count_comparison)
     }
 }
 
-void merge_count_cmp(int arr[], int l, int m, int r, long long &count_comparison)
+void merge_count_cmp(int arr[], int l, int m, int r, unsigned long long &count_comparison)
 {
     int* LEFT = new int[m - l + 1];
     int* RIGHT = new int[r - m];
