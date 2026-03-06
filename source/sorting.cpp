@@ -295,36 +295,59 @@ void shellSort(int* a, int n)
 
 void mergeSort(int* arr, int n)
 {
-    mergeSort(arr, n, 0, n - 1);
+    mergeSort(arr, 0, n - 1);
 }
 
-void mergeSort(int* a, int n, int first, int last)
+void mergeSort(int arr[], int l, int r)
 {
-    if (first < last)
+    if (l < r)
     {
-        int mid = (first + last) / 2;
-        mergeSort(a, n, first, mid);
-        mergeSort(a, n, mid + 1, last);
-        merge(a, n, first, mid, last);
+        int m = (l + r) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
     }
 }
 
-void merge(int* a, int n, int first, int mid, int last)
+void merge(int arr[], int l, int m, int r)
 {
-    int first1 = first, last1 = mid;
-    int first2 = mid + 1, last2 = last;
-
-    int* temparr = new int[n];
-    int index = first1;
-    while ((first1 <= last1) && (first2 <= last2))
+    int* LEFT = new int[m - l + 1];
+    int* RIGHT = new int[r - m];
+    int a = 0, b = 0;
+    for (int i = l; i <= m; i++)
     {
-        if (a[first1] <= a[first2]) temparr[index++] = a[first1++];
-        else temparr[index++] = a[first2++];
+        LEFT[a] = arr[i];
+        a++;
     }
-    while (first1 <= last1) temparr[index++] = a[first1++];
-    while (first2 <= last2) temparr[index++] = a[first2++];
-    for (int i = first; i <= last; ++i)
-        a[i] = temparr[i];
-    delete[] temparr;
-    temparr = NULL;
+    for (int i = m + 1; i <= r; i++)
+    {
+        RIGHT[b] = arr[i];
+        b++;
+    }
+    int i = 0, j = 0, k = l;
+    while (i < a && j < b)
+    {
+        if (LEFT[i] <= RIGHT[j])
+        {
+            arr[k] = LEFT[i];
+            i++, k++;
+        }
+        else
+        {
+            arr[k] = RIGHT[j];
+            j++, k++;
+        }
+    }
+    while (i < a)
+    {
+        arr[k] = LEFT[i];
+        i++, k++;
+    }
+    while (j < b)
+    {
+        arr[k] = RIGHT[j];
+        k++, j++;
+    }
+    delete[] LEFT;
+    delete[] RIGHT;
 }

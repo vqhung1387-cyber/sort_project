@@ -27,5 +27,5 @@ void bubbleSort(int*, int);
 void shellSort(int*, int);
 
 void mergeSort(int* arr, int n);
-void mergeSort(int*, int, int, int);
-void merge(int*, int, int, int, int);
+void mergeSort(int arr[], int l, int r);
+void merge(int arr[], int l, int m, int r);

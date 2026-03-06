@@ -81,7 +81,7 @@ long long perform_count_comp(char* sort_name, int arr[], int n)
 	else if (string(sort_name) == "shell-sort")
 		shellSort_count_cmp(arr, n, count_comp);
 	else if (string(sort_name) == "merge-sort")
-		mergeSort_count_cmp(arr, n, 0, n - 1, count_comp);
+		mergeSort_count_cmp(arr, 0, n - 1, count_comp);
 	else if (string(sort_name) == "counting-sort")
 		countingSort_count_cmp(arr, n, count_comp);
 	else if (string(sort_name) == "binary-insertion-sort")
@@ -113,6 +113,24 @@ void output_param(char* param, char* sort_name, sortFunction sort_func, int n, i
 		cout << "Comparisons: " << cmp << endl;
 		delete[]arr_1;
 	}
+}
+
+int print_input_order(char* input_order)
+{
+	if (string(input_order) == "-rand")
+		cout << "Input order: Randomize" << endl;
+	else if (string(input_order) == "-nsorted")
+		cout << "Input order: Nearly Sorted" << endl;
+	else if (string(input_order) == "-sorted")
+		cout << "Input order: Sorted" << endl;
+	else if (string(input_order) == "-rev")
+		cout << "Input order: Reversed" << endl;
+	else
+	{
+		cout << "Cannot find the input order!" << endl;
+		return 0;
+	}
+	return 1;
 }
 
 void do_command_1(int n, char* requirements[])
@@ -167,7 +185,7 @@ void do_command_2(int n, char* requirements[])
 	cout << "ALGORITHM MODE" << endl;
 	print_sorting_algorithm(requirements[2]);
 	cout << "Input size: " << requirements[3] << endl;
-	cout << "Input order: " << requirements[4] << endl;
+	print_input_order(requirements[4]);
 	
 	for (int i = 0; i < 5; i++)
 		cout << "-----";
@@ -380,7 +398,7 @@ void do_command_5(int n, char* requirements[])
 	cout << "COMPARE MODE" << endl;
 	print_TWOsorting_algorithm(requirements[2],requirements[3]);
 	cout << "Input size: " << requirements[4] << endl;
-	cout << "Input order: " << requirements[5] << endl;
+	print_input_order(requirements[5]);
 
 	for (int i = 0; i < 5; i++)
 		cout << "-----";

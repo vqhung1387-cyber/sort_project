@@ -26,5 +26,5 @@ void bubbleSort_count_cmp(int*, int, long long&);
 
 void shellSort_count_cmp(int*, int, long long&);
 
-void mergeSort_count_cmp(int*, int, int, int, long long&);
-void merge_count_cmp(int*, int, int, int, int, long long&);
+void mergeSort_count_cmp(int arr[], int l, int r, long long& count_comparison);
+void merge_count_cmp(int arr[], int l, int m, int r, long long& count_comparison);

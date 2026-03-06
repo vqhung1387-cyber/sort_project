@@ -5,13 +5,11 @@ using namespace std;
 long long selectionSort_count_cmp(int arr[], int n)
 {
     long long count_comparison = 0;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0;  ++count_comparison && i < n - 1; i++)
     {
-        count_comparison++;
         int minIdx = i;
-        for (int j = i + 1; j < n; j++)
+        for (int j = i + 1; ++count_comparison && j < n; j++)
         {
-            count_comparison++;
             if (++count_comparison && arr[minIdx] > arr[j])
                 minIdx = j;
         }
@@ -26,11 +24,10 @@ long long shakerSort_count_cmp(int arr[], int n)
     int left = 0;
     int right = n - 1;
     int k = 0;
-    while (left < right)
+    while (++count_comparison && left < right)
     {
-        for (int i = left; i < right; i++)
+        for (int i = left; ++count_comparison && i < right; i++)
         {
-            ++count_comparison;
             if (++count_comparison && arr[i] > arr[i + 1])
             {
                 swap(arr[i], arr[i + 1]);
@@ -38,9 +35,8 @@ long long shakerSort_count_cmp(int arr[], int n)
             }
         }
         right = k;
-        for (int i = right; i > left; i--)
+        for (int i = right; ++count_comparison && i > left; i--)
         {
-            ++count_comparison;
             if (++count_comparison && arr[i] < arr[i - 1])
             {
                 swap(arr[i], arr[i - 1]);
@@ -358,33 +354,57 @@ void shellSort_count_cmp(int* a, int n, long long& count_comparison)
     }
 }
 
-void mergeSort_count_cmp(int* a, int n, int first, int last, long long& count_comparison)
+void mergeSort_count_cmp(int arr[], int l, int r, long long &count_comparison)
 {
-    if (++count_comparison && first < last)
+    if (++count_comparison && l < r)
     {
-        int mid = (first + last) / 2;
-        mergeSort_count_cmp(a, n, first, mid, count_comparison);
-        mergeSort_count_cmp(a, n, mid + 1, last, count_comparison);
-        merge_count_cmp(a, n, first, mid, last, count_comparison);
+        int m = (l + r) / 2;
+        mergeSort_count_cmp(arr, l, m, count_comparison);
+        mergeSort_count_cmp(arr, m + 1, r, count_comparison);
+        merge_count_cmp(arr, l, m, r, count_comparison);
     }
 }
 
-void merge_count_cmp(int* a, int n, int first, int mid, int last, long long& count_comparison)
+void merge_count_cmp(int arr[], int l, int m, int r, long long &count_comparison)
 {
-    int first1 = first, last1 = mid;
-    int first2 = mid + 1, last2 = last;
-
-    int* temparr = new int[n];
-    int index = first1;
-    while ((++count_comparison && first1 <= last1) && (++count_comparison && first2 <= last2))
+    int* LEFT = new int[m - l + 1];
+    int* RIGHT = new int[r - m];
+    int a = 0, b = 0;
+    for (int i = l; ++count_comparison && i <= m; i++)
     {
-        if (++count_comparison && a[first1] <= a[first2]) temparr[index++] = a[first1++];
-        else temparr[index++] = a[first2++];
+
+        LEFT[a] = arr[i];
+        a++;
     }
-    while (++count_comparison && first1 <= last1) temparr[index++] = a[first1++];
-    while (++count_comparison && first2 <= last2) temparr[index++] = a[first2++];
-    for (int i = first; i <= last; ++i)
-        a[i] = temparr[i];
-    delete[] temparr;
-    temparr = NULL;
+    for (int i = m + 1; ++count_comparison && i <= r; i++)
+    {
+        RIGHT[b] = arr[i];
+        b++;
+    }
+    int i = 0, j = 0, k = l;
+    while (++count_comparison && i < a && ++count_comparison && j < b)
+    {
+        if (++count_comparison && LEFT[i] <= RIGHT[j])
+        {
+            arr[k] = LEFT[i];
+            i++, k++;
+        }
+        else
+        {
+            arr[k] = RIGHT[j];
+            j++, k++;
+        }
+    }
+    while (++count_comparison && i < a)
+    {
+        arr[k] = LEFT[i];
+        i++, k++;
+    }
+    while (++count_comparison && j < b)
+    {
+        arr[k] = RIGHT[j];
+        k++, j++;
+    }
+    delete[] LEFT;
+    delete[] RIGHT;
 }
