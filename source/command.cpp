@@ -135,7 +135,7 @@ int print_input_order(char* input_order)
 
 void do_command_1(int n, char* requirements[])
 {
-	ifstream fin(requirements[3], ios::out);
+	ifstream fin(requirements[3], ios::in);
 	if (!fin.is_open()) {
 		cout << "Error: Cannot open file " << requirements[3] << endl;
 		return;

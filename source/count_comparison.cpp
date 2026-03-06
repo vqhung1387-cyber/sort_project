@@ -134,26 +134,22 @@ void heapify_count_cmp(int arr[], int end, int curNode, unsigned long long &coun
     int leftNode = curNode * 2 + 1, rightNode = curNode * 2 + 2;
     int bigNode = curNode;
 
-    if (leftNode < end)
+    if (++count_comparison && leftNode < end)
     {
-        count_comparison++;
-        if (arr[leftNode] > arr[bigNode])
+        if (++count_comparison && arr[leftNode] > arr[bigNode])
         {
-            count_comparison++;
             bigNode = leftNode;
         }
     }
-    if (rightNode < end)
+    if (++count_comparison && rightNode < end)
     {
-        count_comparison++;
-        if (arr[rightNode] > arr[bigNode])
+        if (++count_comparison && arr[rightNode] > arr[bigNode])
         {
-            count_comparison++;
             bigNode = rightNode;
         }
     }
 
-    if (bigNode != curNode)
+    if (++count_comparison && bigNode != curNode)
     {
         swap(arr[curNode], arr[bigNode]);
         heapify_count_cmp(arr, end, bigNode, count_comparison);
@@ -164,9 +160,9 @@ void heapify_count_cmp(int arr[], int end, int curNode, unsigned long long &coun
 
 void heapSort_count_cmp(int arr[], int n, unsigned long long &count_comparison)
 {
-    for (int i = (n - 1) / 2; i >= 0; i--, ++count_comparison)
+    for (int i = (n - 1) / 2; ++count_comparison && i >= 0; i--)
         heapify_count_cmp(arr, n, i, count_comparison);
-    for (int i = n - 1; i > 0; i--, ++count_comparison)
+    for (int i = n - 1; ++count_comparison && i > 0; i--)
     {
         swap(arr[0], arr[i]);
         heapify_count_cmp(arr, i, 0, count_comparison);
@@ -205,6 +201,8 @@ void radixSort_count_cmp(int arr[], int n, unsigned long long &count_comparison)
                 arr[idx++] = storage[i][j];
             }
         }
+        for (int i = 0; i < 10; i++)
+            delete[]storage[i];
     }
 }
 //---------------------------------

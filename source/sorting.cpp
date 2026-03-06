@@ -128,8 +128,8 @@ void heapify(int arr[], int end, int curNode) {
     int leftNode = curNode * 2 + 1, rightNode = curNode * 2 + 2;
     int bigNode = curNode;
 
-    if (arr[leftNode] > arr[bigNode] && leftNode < end) bigNode = leftNode;
-    if (arr[rightNode] > arr[bigNode] && rightNode < end) bigNode = rightNode;
+    if (leftNode < end && arr[leftNode] > arr[bigNode]) bigNode = leftNode;
+    if (rightNode < end && arr[rightNode] > arr[bigNode]) bigNode = rightNode;
 
     if (bigNode != curNode) {
         swap(arr[curNode], arr[bigNode]);
@@ -166,6 +166,8 @@ void radixSort(int arr[], int n) {
                 arr[idx++] = storage[i][j];
             }
         }
+        for (int i = 0; i < 10; i++)
+            delete[]storage[i];
     }
 }
 //---------------------------------------------
