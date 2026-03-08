@@ -207,8 +207,8 @@ void radixSort_count_cmp(int arr[], int n, unsigned long long &count_comparison)
 }
 //---------------------------------
 void countingSort_count_cmp(int a[], int n, unsigned long long& count_comparison) {
-    int max_val = INT_MIN;
-    for (int i = 0; i < n; i++) {
+    int max_val = a[0];
+    for (int i = 1; i < n; i++) {
         ++count_comparison;
         if (++count_comparison && a[i] > max_val) {
             max_val = a[i];
