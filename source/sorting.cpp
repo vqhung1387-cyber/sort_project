@@ -172,8 +172,8 @@ void radixSort(int arr[], int n) {
 }
 //---------------------------------------------
 void countingSort(int a[], int n) {
-    int max_val = INT_MIN;
-    for (int i = 0; i < n; i++) {
+    int max_val = a[1];
+    for (int i = 1; i < n; i++) {
         if (a[i] > max_val) {
             max_val = a[i];
         }
