@@ -19,20 +19,24 @@ Our source code is divided into several files:
 * `count_comparison.cpp`: Returns the number of comparisons made by each algorithm.
 
 ## 4. How to Compile
-To run this project, you need a C++ compiler (such as GCC). Please open your terminal or command prompt, navigate to the folder containing our source code, and run this command to compile:
+Please open your terminal or command prompt, navigate to the project folder, and run this command to compile all source files into a single executable:
 
-g++ -o main main.cpp command.cpp DataGenerator.cpp sort_runtime.cpp sorting.cpp count_comparison.cpp
+g++ *.cpp -std=c++14 -o 03.exe
 
 ## 5. How to Run
-After compiling successfully, the compiler will create an executable file named `main` (or `main.exe` on Windows). You can run the program using the command line format below:
+After compiling successfully, you can run the program using the command line. There are 5 main command modes:
 
-* For Windows:
-main.exe [mode] [algorithm] [input_size] [input_order] [output_parameters]
+* Command 1 (Run on a specific file):
+  03.exe -a [Algorithm] [Given input] [Output parameter(s)]
+* Command 2 (Run on generated data):
+  03.exe -a [Algorithm] [Input size] [Input order] [Output parameter(s)]
+* Command 3 (Run on all 4 data orders):
+  03.exe -a [Algorithm] [Input size] [Output parameter(s)]
+* Command 4 (Compare 2 algorithms on a specific file):
+  03.exe -c [Algorithm 1] [Algorithm 2] [Given input]
+* Command 5 (Compare 2 algorithms on generated data):
+  03.exe -c [Algorithm 1] [Algorithm 2] [Input size] [Input order]
 
-* For macOS / Linux:
-./main [mode] [algorithm] [input_size] [input_order] [output_parameters]
-
-Example command:
-main.exe -a Radix-Sort 10000 -rand -time
+Example: 03.exe -a Flash-Sort 500000 -rand -time
 
 Thank you for reviewing our project!
