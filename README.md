@@ -25,6 +25,18 @@ g++ *.cpp -std=c++14 -o 03.exe
 ```
 ## 5. How to Run
 After compiling successfully, you can run the program using the command line. There are 5 main command modes:
+### Options Breakdown
+Before running the commands, here is the list of valid options you can use:
+* **-mode**: Use `-a` for Algorithm mode or `-c` for Comparison mode.
+* **Algorithm**: The name of the algorithm (e.g., `selection-sort`, `insertion-sort`, `flash-sort`, etc.).
+* **Input_file**: The path to your text file. The file format must be:
+  * 1st line: an integer n (number of elements).
+  * 2nd line: n integers, separated by a single space.
+* **Input_size**: The size of the data to generate. It must be an integer (<= 1,000,000).
+* **Input_order**: The initial order of the generated data. Use `-sorted`, `-nsorted`, `-rev`, or `-rand`.
+* **Output_parameter**: What to display on the screen. Use `-time`, `-comp`, or `-both`.
+
+---
 
 * Command 1 (Run on a specific file):
 ```bash
