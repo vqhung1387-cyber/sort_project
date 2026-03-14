@@ -1,11 +1,11 @@
-# SORTING ALGORITHMS PROJECT
+# SORTING ALGORITHMS PROJECT - DSA LAB PROJECT
 
 ## 1. Group Information
 * Vuong Quoc Hung (25127055)
 * Nguyen Quoc Thinh (25127507)
 * Nguyen Mai Huong Binh (25127019)
 * Tran Nguyen Anh Khoa (25127386)
-
+Instructors: Tran Thi Thao Nhi and Tran Hoang Quan.
 ## 2. Project Overview
 Welcome to our Sorting Algorithms project. This program implements 12 different sorting algorithms. It helps measure the running time (in milliseconds) and counts the total number of comparisons for each algorithm. The program runs completely on the command line.
 
