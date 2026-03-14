@@ -32,7 +32,7 @@ After compiling successfully, you can run the program using the command line. Th
 ```
 Example:
 ```bash
-03.exe -a Radix-Sort input.txt -both
+03.exe -a radix-sort input.txt -both
 ```
 * Command 2 (Run on generated data):
 ```bash
@@ -40,7 +40,7 @@ Example:
 ```
 Example:
 ```bash
-03.exe -a Flash-Sort 500000 -rand -time
+03.exe -a flash-sort 500000 -rand -time
 ```
 * Command 3 (Run on all 4 data orders):
 ``` bash
@@ -48,7 +48,7 @@ Example:
 ```
  Example:
 ``` bash
-03.exe -a Quick-Sort 100000 -comp
+03.exe -a quick-sort 100000 -comp
 ```
 * Command 4 (Compare 2 algorithms on a specific file):
 ```bash
@@ -56,7 +56,7 @@ Example:
 ```
 Example:
 ```bash
-03.exe -c Merge-Sort Heap-Sort input.txt
+03.exe -c merge-sort Heap-Sort input.txt
 ```
 * Command 5 (Compare 2 algorithms on generated data):
 ```bash
@@ -64,7 +64,7 @@ Example:
 ```
 Example:
 ```bash
-03.exe -c Bubble-Sort Shaker-Sort 30000 -rev
+03.exe -c bubble-sort Shaker-Sort 30000 -rev
 ```
 
 Thank you for reviewing our project!
