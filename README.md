@@ -56,7 +56,7 @@ Example:
 ```
 Example:
 ```bash
-03.exe -c merge-sort Heap-Sort input.txt
+03.exe -c merge-sort heap-sort input.txt
 ```
 * Command 5 (Compare 2 algorithms on generated data):
 ```bash
@@ -64,7 +64,7 @@ Example:
 ```
 Example:
 ```bash
-03.exe -c bubble-sort Shaker-Sort 30000 -rev
+03.exe -c bubble-sort shaker-sort 30000 -rev
 ```
 
 Thank you for reviewing our project!
