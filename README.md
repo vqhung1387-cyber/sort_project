@@ -20,23 +20,51 @@ Our source code is divided into several files:
 
 ## 4. How to Compile
 Please open your terminal or command prompt, navigate to the project folder, and run this command to compile all source files into a single executable:
-
+```bash
 g++ *.cpp -std=c++14 -o 03.exe
-
+```
 ## 5. How to Run
 After compiling successfully, you can run the program using the command line. There are 5 main command modes:
 
 * Command 1 (Run on a specific file):
+```bash
   03.exe -a [Algorithm] [Given input] [Output parameter(s)]
+```
+Example:
+```bash
+03.exe -a Radix-Sort input.txt -both
+```
 * Command 2 (Run on generated data):
+```bash
   03.exe -a [Algorithm] [Input size] [Input order] [Output parameter(s)]
+```
+Example:
+```bash
+03.exe -a Flash-Sort 500000 -rand -time
+```
 * Command 3 (Run on all 4 data orders):
+``` bash
   03.exe -a [Algorithm] [Input size] [Output parameter(s)]
+```
+ Example:
+``` bash
+03.exe -a Quick-Sort 100000 -comp
+```
 * Command 4 (Compare 2 algorithms on a specific file):
+```bash
   03.exe -c [Algorithm 1] [Algorithm 2] [Given input]
+```
+Example:
+```bash
+03.exe -c Merge-Sort Heap-Sort input.txt
+```
 * Command 5 (Compare 2 algorithms on generated data):
+```bash
   03.exe -c [Algorithm 1] [Algorithm 2] [Input size] [Input order]
-
-Example: 03.exe -a Flash-Sort 500000 -rand -time
+```
+Example:
+```bash
+03.exe -c Bubble-Sort Shaker-Sort 30000 -rev
+```
 
 Thank you for reviewing our project!
